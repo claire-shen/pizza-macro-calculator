@@ -1,23 +1,20 @@
 .bg-image {
-    /* Set background image */
-    background-image: url('pizza_background.png');
-    /* Set background size to cover entire element */
+    background-image: url('images/pizza_background.png');
     background-size: cover;
-    /* Set background to fixed position */
     background-attachment: fixed;
-    /* Set background to center */
     background-position: center;
-    /* Set minimum height for background image */
     min-height: 100vh;
+    position: fixed;
+    z-index: -1;
 }
 
-.navbar {
+.bg-body-tertiary {
     background-color: #2050b1 !important;
 }
 
 .navbar-nav .nav-link {
     color: white !important;
-    font-size: 1.4rem !important; 
+    font-size: 1.4rem !important;
 }
 
 .font1 {
@@ -25,3 +22,61 @@
     font-weight: 400;
     font-style: normal;
 }
+
+.welcome {
+    border: 5px solid;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    margin-top: 5%;
+    background-color: rgba(172, 161, 198, 0.787);
+    width: 80%;
+}
+
+.explanation {
+    margin: auto;
+    padding: 8px;
+    text-align: center;
+    background-color: rgba(219, 206, 195, 0.846);
+    margin-top: 4%;
+    width: 70%;
+    padding: 2%;
+    border-radius: 15px;
+    border: 3px solid;
+}
+
+
+.font2 {
+    font-family: "Cairo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: light;
+    font-style: normal;
+}
+
+.container-fluid {
+    padding-left: 30px; 
+    padding-right: 30px; 
+}
+
+
+.logos{
+    width: 80%;
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #fd0d81;
+    --bs-btn-border-color: #fd0d81;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: #98064c;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0a58ca;
+    --bs-btn-active-border-color: #0a53be;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0d6efd;
+    --bs-btn-disabled-border-color: #0d6efd;
+}
+
