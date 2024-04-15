@@ -1,3 +1,63 @@
+@-webkit-keyframes scaleIn {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+    }
+
+    to {
+        -webkit-transform: scale(2, 2, 2);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
 .bg-image {
     background-image: url('images/pizza_background.png');
     background-size: cover;
@@ -17,6 +77,14 @@
     font-size: 1.4rem !important;
 }
 
+.navbar-nav .nav-link:hover {
+    color: rgb(201, 19, 19) !important;
+}
+
+.navbar-toggler{
+    background-color: #faecec;
+}
+
 .font1 {
     font-family: "Jersey 25", sans-serif;
     font-weight: 400;
@@ -24,16 +92,21 @@
 }
 
 .welcome {
-    border: 5px solid;
+    border: 4px solid;
     margin: auto;
     padding: 10px;
     text-align: center;
     margin-top: 5%;
-    background-color: rgba(172, 161, 198, 0.787);
+    background-color: rgb(154, 128, 215);
     width: 80%;
+
+    -webkit-animation: scaleIn;
+    -webkit-animation-duration: 1.5s;
+    animation: scaleIn;
+    animation-duration: 1.5s;
 }
 
-.welcome-text{
+.welcome-text {
     font-size: calc(1.775rem + 1.5vw);
 }
 
@@ -41,7 +114,7 @@
     margin: auto;
     padding: 8px;
     text-align: center;
-    background-color: rgba(219, 206, 195, 0.846);
+    background-color: rgb(219, 206, 195);
     margin-top: 4%;
     width: 70%;
     padding: 2%;
@@ -57,22 +130,22 @@
 }
 
 .explanation-text {
-    font-size: calc(0.6rem + 1.1vw);
-  }
-  
-  @media (min-width: 1200px) {
+    font-size: calc(0.7rem + 1.1vw);
+}
+
+@media (min-width: 1200px) {
     .title {
-      font-size: 0.8rem;
+        font-size: 0.9rem;
     }
-  }
+}
 
 .container-fluid {
-    padding-left: 50px; 
-    padding-right: 50px; 
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 
-.logos{
+.logos {
     width: 80%;
 }
 
@@ -92,4 +165,3 @@
     --bs-btn-disabled-bg: #fd0d81;
     --bs-btn-disabled-border-color: #fd0d81;
 }
-

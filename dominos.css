@@ -1,0 +1,27 @@
+.logos {
+    border: 3px solid;
+}
+
+.dominos-welcome {
+    font-size: calc(1.5rem + 1.4vw);
+    background-color: rgb(223, 103, 82);
+    border: 3px solid;
+}
+
+
+@media (min-width: 800px) {
+    .logos {
+        width: 60%;
+        margin-left: 15%;
+    }
+}
+
+.updated-last {
+    background-color: rgb(36, 213, 160);
+    width: 85%;
+}
+
+.source-link{
+    background-color: rgb(114, 55, 177);
+    width: 60%;
+}
