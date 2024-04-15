@@ -14,6 +14,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Passion+One:wght@400;700;900&display=swap"
     rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -52,7 +54,6 @@
       <div class="d-flex justify-content-center mt-3 mb-2">
         <h3 class="dominos-welcome font1 p-4 pt-2 pb-2 mt-3 mb-4 rounded-2">Domino's Pizza Calculator</h3>
       </div>
-
       <div class="row">
         <div class="col-12 col-md-7 text-center d-flex justify-content-center">
           <div class="updated-last rounded-5 mb-4 p-3">
@@ -62,15 +63,55 @@
 
         <div class="col-12 col-md-5 text-center d-flex justify-content-center rounded-pill">
           <div class="source-link p-3 mb-4 rounded-circle font2 d-flex align-items-center justify-content-center">
-            <a class="text-white" href="https://www.dominos.ca/assets/build/market/CA/_en/pdf/Canadian-Nutrition-Guide-Final-Secure.pdf">click here for source</a>
+            <a class="text-white"
+              href="https://www.dominos.ca/assets/build/market/CA/_en/pdf/Canadian-Nutrition-Guide-Final-Secure.pdf">click
+              here for source</a>
           </div>
         </div>
-
-
       </div>
-
     </div>
   </div>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4 d-flex align-items-center justify-content-center">
+        <div class="select-size">
+          <select id="size-select" class="form-select font4 p-2" aria-label="Default select">
+            <option class="grey-border" selected>Select your size</option>
+            <option value="Personal">Personal</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+            <option value="XLarge">XLarge</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4 d-flex align-items-center justify-content-center" id="crust-dropdown">
+        <div class="select-crust">
+          <select id="crust-select" class="form-select font4 p-2" aria-label="Default select">
+            <option selected>Select your crust</option>
+            <!-- Crust options will be dynamically added here -->
+          </select>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="custom-box">
+          Column 2
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="custom-box">
+          Column 3
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
 
