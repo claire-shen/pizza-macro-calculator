@@ -53,7 +53,7 @@
 
 
 
-.select-size, .select-crust{
+.select-size, .select-crust, .select-cheese{
     width: 90%;
     border: 2px solid grey; 
     border-radius: 8px;
@@ -67,4 +67,19 @@
 .form-control{
     height:auto;
     text-align:center;
+}
+
+#cheese-pizza-btn, #toppings-pizza-btn{
+    background-color: #e27704;
+    border: 2px black solid; 
+}
+
+
+#toppings-pizza-btn:hover, #cheese-pizza-btn:hover {
+    background-color: #3b3e41 !important;
+}
+
+.selected-pizza-option{
+    color: rgb(255, 0, 191); 
+    background-color: #dae0e7bb !important;
 }

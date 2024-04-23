@@ -15,7 +15,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Francois+One&family=Passion+One:wght@400;700;900&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Teko:wght@300..700&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -88,26 +89,34 @@
         </div>
       </div>
 
-      <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4 d-flex align-items-center justify-content-center" id="crust-dropdown">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4 d-flex align-items-center justify-content-center"
+        id="crust-dropdown">
         <div class="select-crust">
           <select id="crust-select" class="form-select font4 p-2" aria-label="Default select">
             <option selected>Select your crust</option>
-            <!-- Crust options will be dynamically added here -->
           </select>
         </div>
       </div>
 
-      <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-        <div class="custom-box">
-          Column 2
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4 d-flex flex-column align-items-center justify-content-center">
+        <div class="pizza-type-buttons">
+          <button id="cheese-pizza-btn" class="btn btn-primary me-2">Cheese Only</button>
+          <button id="toppings-pizza-btn" class="btn btn-primary ms-2">With Toppings</button>
         </div>
+        <div id="chosen-pizza" class="text-center mt-1 font2 selected-pizza-option"></div> <!-- Moved here -->
       </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4 d-flex align-items-center justify-content-center pizzaOption">
+        
+      </div>
+
 
       <div class="col-12 col-sm-12 col-md-6 col-lg-4">
         <div class="custom-box">
-          Column 3
+          Column 4
         </div>
       </div>
+
     </div>
   </div>
 
