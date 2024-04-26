@@ -35,6 +35,11 @@ var crustSizeInfo = {
 };
 
 sizeSelect.addEventListener('change', function () {
+    pizzaOption.innerHTML = '';
+    crustSelected = false; 
+    toppingsPizzaBtn.style.backgroundColor = '#e27704'
+    cheesePizzaBtn.style.backgroundColor = '#e27704';
+    document.getElementById('chosen-pizza').innerHTML = "";
     selectedSize = sizeSelect.value;
     sizeSelected = true; 
     console.log(selectedSize);
@@ -91,6 +96,10 @@ function addCrustOptions(crustOptions) {
 
 var crustSelect = document.getElementById('crust-select');
 crustSelect.addEventListener('change', function () {
+    pizzaOption.innerHTML = '';
+    toppingsPizzaBtn.style.backgroundColor = '#e27704'
+    cheesePizzaBtn.style.backgroundColor = '#e27704';
+    document.getElementById('chosen-pizza').innerHTML = "";
     selectedCrust = crustSelect.value; 
     crustSelected = true; 
     calculateCrustSize(selectedSize, selectedCrust);
@@ -111,7 +120,7 @@ function calculateCrustSize(size, crust) {
 
 var cheesePizzaBtn = document.getElementById('cheese-pizza-btn');
 var toppingsPizzaBtn = document.getElementById('toppings-pizza-btn');
-var pizzaOption = document.querySelector('.pizzaOption'); 
+var pizzaOption = document.querySelector('.pizzaOption'); //where the cheese options appear 
 
 cheesePizzaBtn.addEventListener('click', function() {
     if (!sizeSelected || !crustSelected) {
@@ -127,11 +136,11 @@ cheesePizzaBtn.addEventListener('click', function() {
     cheesePizzaDiv.innerHTML = `
         <select id="cheese-select" class="form-select font4 p-2" aria-label="Default select">
             <option class="grey-border" selected>Select your size</option>
-            <option value="Light">Light Cheese</option>
-            <option value="Regular">Regular Cheese</option>
-            <option value="Extra">Extra Cheese</option>
-            <option value="Double">Double Cheese</option>
-            <option value="Triple">Triple Cheese</option>
+            <option value="CLight">Light Cheese</option>
+            <option value="CRegular">Regular Cheese</option>
+            <option value="CExtra">Extra Cheese</option>
+            <option value="CDouble">Double Cheese</option>
+            <option value="CTriple">Triple Cheese</option>
         </select>
     `;
     pizzaOption.innerHTML = '';
@@ -148,15 +157,15 @@ toppingsPizzaBtn.addEventListener('click', function() {
     cheesePizzaBtn.style.backgroundColor = '#e27704'
 
     var toppingPizzaDiv = document.createElement('div');
-    toppingPizzaDiv.classList.add('select-cheese'); 
+    toppingPizzaDiv.classList.add('select-cheese-toppings'); 
     toppingPizzaDiv.innerHTML = `
         <select id="cheese-select" class="form-select font4 p-2" aria-label="Default select">
-            <option class="grey-border" selected>Select your size</option>
-            <option value="Light">Light Cheese</option>
-            <option value="Regular">Regular Cheese</option>
-            <option value="Extra">Extra Cheese</option>
-            <option value="Double">Double Cheese</option>
-            <option value="Triple">Triple Cheese</option>
+            <option class="Tgrey-border" selected>Select your cheese</option>
+            <option value="TLight">Light Cheese</option>
+            <option value="TRegular">Regular Cheese</option>
+            <option value="TExtra">Extra Cheese</option>
+            <option value="TDouble">Double Cheese</option>
+            <option value="TTriple">Triple Cheese</option>
         </select>
     `;
     pizzaOption.innerHTML = '';
