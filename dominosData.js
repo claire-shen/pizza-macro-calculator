@@ -191,3 +191,28 @@ export const cheeseDataCO = {
         }
     }
 };
+
+export const crustSizeInfo = {
+    'Personal': {
+        'handTossed': { calories: 144, protein: 12, fats: 5, carbs: 66 }
+    },
+    'Small': {
+        'originalHandTossed': { calories: 780, protein: 24, fats: 9, carbs: 138 },
+        'crunchyThinCrust': { calories: 440, protein: 12, fats: 18, carbs: 56 },
+        'glutenFreeCrust': { calories: 390, protein: 6, fats: 4.5, carbs: 84 }
+    },
+    'Medium': {
+        'originalHandTossed': { calories: 960, protein: 32, fats: 12, carbs: 184 },
+        'crunchyThinCrust': { calories: 640, protein: 16, fats: 28, carbs: 88 },
+        'handmadePan': { calories: 1520, protein: 40, fats: 64, carbs: 208 }
+    },
+    'Large': {
+        'originalHandTossed': { calories: 1360, protein: 40, fats: 16, carbs: 248 },
+        'crunchyThinCrust': { calories: 1360, protein: 40, fats: 16, carbs: 248 },
+        'brooklynCrust': { calories: 780, protein: 24, fats: 9, carbs: 138 }
+    },
+    'XLarge': {
+        'originalHandTossed': { calories: 1800, protein: 60, fats: 25, carbs: 320 },
+        'brooklynCrust': { calories: 780, protein: 24, fats: 9, carbs: 138 }
+    }
+};

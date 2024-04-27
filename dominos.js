@@ -1,10 +1,16 @@
-import { cheeseDataT } from './cheeseData.js';
-import { cheeseDataCO } from './cheeseData.js';
+import { cheeseDataT } from './dominosData.js';
+import { cheeseDataCO } from './dominosData.js';
+import { crustSizeInfo } from './dominosData.js';
 
 var totalCalories = 0;
 var totalProtein = 0;
 var totalCarbs = 0; 
 var totalFats = 0;
+
+var cheeseCalories = 0; 
+var cheeseProtein = 0; 
+var cheeseFats = 0; 
+var cheeseCarbs = 0; 
 
 var sizeSelect = document.getElementById('size-select');
 var selectedCrust = ''; 
@@ -15,31 +21,6 @@ var sizeSelected = false;
 var cheeseOrToppings = '';
 var cheeseLevelToppings = '';
 var cheeseLevelCheese= '';
-
-var crustSizeInfo = {
-    'Personal': {
-        'handTossed': { calories: 144, protein: 12, fats: 5, carbs: 66 }
-    },
-    'Small': {
-        'originalHandTossed': { calories: 780, protein: 24, fats: 9, carbs: 138 },
-        'crunchyThinCrust': { calories: 440, protein: 12, fats: 18, carbs: 56 },
-        'glutenFreeCrust': { calories: 390, protein: 6, fats: 4.5, carbs: 84 }
-    },
-    'Medium': {
-        'originalHandTossed': { calories: 960, protein: 32, fats: 12, carbs: 184 },
-        'crunchyThinCrust': { calories: 640, protein: 16, fats: 28, carbs: 88 },
-        'handmadePan': { calories: 1520, protein: 40, fats: 64, carbs: 208 }
-    },
-    'Large': {
-        'originalHandTossed': { calories: 1360, protein: 40, fats: 16, carbs: 248 },
-        'crunchyThinCrust': { calories: 1360, protein: 40, fats: 16, carbs: 248 },
-        'brooklynCrust': { calories: 780, protein: 24, fats: 9, carbs: 138 }
-    },
-    'XLarge': {
-        'originalHandTossed': { calories: 1800, protein: 60, fats: 25, carbs: 320 },
-        'brooklynCrust': { calories: 780, protein: 24, fats: 9, carbs: 138 }
-    }
-};
 
 sizeSelect.addEventListener('change', function () {
     pizzaOption.innerHTML = '';
@@ -112,16 +93,12 @@ crustSelect.addEventListener('change', function () {
 });
 
 function calculateCrustSize(size, crust) {
-    if (size in crustSizeInfo && crust in crustSizeInfo[size]) {
-        var info = crustSizeInfo[size][crust];
-        totalCalories = info.calories;
-        totalProtein = info.protein;
-        totalFats = info.fats;
-        totalCarbs = info.carbs;
-    } else {
-        console.log("Invalid size or crust selection");
-    }
-    console.log(totalCalories);
+    var info = crustSizeInfo[size][crust];
+    totalCalories = info.calories;
+    totalProtein = info.protein;
+    totalFats = info.fats;
+    totalCarbs = info.carbs;
+    console.log("calories from size crust: " + totalCalories);
 }
 
 var cheesePizzaBtn = document.getElementById('cheese-pizza-btn');
@@ -155,6 +132,10 @@ cheesePizzaBtn.addEventListener('click', function() {
     
     var cheeseListener = document.getElementById('cheese-select');
     cheeseListener.addEventListener('change', function() {
+        cheeseCalories = 0; 
+        cheeseProtein = 0; 
+        cheeseFats = 0; 
+        cheeseCarbs = 0; 
         cheeseLevelCheese = cheeseListener.value;
         console.log(cheeseLevelCheese);
         calculateCheeseCO(cheeseLevelCheese); 
@@ -188,6 +169,11 @@ toppingsPizzaBtn.addEventListener('click', function() {
     
     var cheeseListener = document.getElementById('cheese-select-toppings');
     cheeseListener.addEventListener('change', function() {
+        
+        cheeseCalories = 0; 
+        cheeseProtein = 0; 
+        cheeseFats = 0; 
+        cheeseCarbs = 0; 
         cheeseLevelToppings = cheeseListener.value;
         console.log(cheeseLevelToppings);
         calculateCheeseT(cheeseLevelToppings); 
@@ -195,21 +181,20 @@ toppingsPizzaBtn.addEventListener('click', function() {
     
 });
 
-
 function calculateCheeseT() {
-    const info = cheeseDataT[selectedSize][selectedCrust][cheeseLevelToppings];
-    totalCalories += info.calories;
-    totalProtein += info.protein;
-    totalFats += info.fats;
-    totalCarbs += info.carbs;
-    console.log(totalCalories);
+    var info = cheeseDataT[selectedSize][selectedCrust][cheeseLevelToppings];
+    cheeseCalories += info.calories;
+    cheeseProtein += info.protein;
+    cheeseFats += info.fats;
+    cheeseCarbs += info.carbs;
+    console.log("calories from cheese: " + cheeseCalories);
 };
 
 function calculateCheeseCO() {
-    const info = cheeseDataCO[selectedSize][selectedCrust][cheeseLevelCheese];
-    totalCalories += info.calories;
-    totalProtein += info.protein;
-    totalFats += info.fats;
-    totalCarbs += info.carbs;
-    console.log(totalCalories);
+    var info = cheeseDataCO[selectedSize][selectedCrust][cheeseLevelCheese];
+    cheeseCalories += info.calories;
+    cheeseProtein += info.protein;
+    cheeseFats += info.fats;
+    cheeseCarbs += info.carbs;
+    console.log("calories from cheese: " + cheeseCalories);
 };
