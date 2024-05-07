@@ -53,7 +53,7 @@
 
 
 
-.select-size, .select-crust, .select-cheese, .select-cheese-toppings{
+.select-size, .select-crust, .select-cheese, .select-cheese-toppings, .select-sauce{
     width: 90%;
     border: 2px solid grey; 
     border-radius: 8px;

@@ -22,7 +22,13 @@ var cheeseOrToppings = '';
 var cheeseLevelToppings = '';
 var cheeseLevelCheese= '';
 
+var sauceCalories = 0; 
+var sauceProtein = 0; 
+var sauceCarbs = 0; 
+var sauceFats = 0; 
+
 sizeSelect.addEventListener('change', function () {
+    sauceOptionDiv.innerHTML = '';
     pizzaOption.innerHTML = '';
     crustSelected = false; 
     toppingsPizzaBtn.style.backgroundColor = '#e27704'
@@ -65,7 +71,8 @@ sizeSelect.addEventListener('change', function () {
     { text: 'Original Hand Tossed', value: 'originalHandTossed' },
     { text: 'Brooklyn Crust', value: 'brooklynCrust' }
 ]);
-} 
+}
+
 document.getElementById('crust-dropdown').style.display = 'block';
 });
 
@@ -84,6 +91,7 @@ function addCrustOptions(crustOptions) {
 var crustSelect = document.getElementById('crust-select');
 crustSelect.addEventListener('change', function () {
     pizzaOption.innerHTML = '';
+    sauceOptionDiv.innerHTML = '';
     toppingsPizzaBtn.style.backgroundColor = '#e27704'
     cheesePizzaBtn.style.backgroundColor = '#e27704';
     document.getElementById('chosen-pizza').innerHTML = "";
@@ -106,20 +114,24 @@ var toppingsPizzaBtn = document.getElementById('toppings-pizza-btn');
 var pizzaOption = document.querySelector('.pizzaOption'); //where the cheese options appear 
 
 cheesePizzaBtn.addEventListener('click', function() {
+    pizzaOption.innerHTML = '';
+    sauceOptionDiv.innerHTML = ''; 
     if (!sizeSelected || !crustSelected) {
         document.getElementById('chosen-pizza').innerHTML = "Please select a size and crust first";
         return;
     }
+    
+    var cheesePizzaDiv = document.createElement('div');
+    cheesePizzaDiv.innerHTML = ''; 
     cheeseOrToppings = 'cheese';
     document.getElementById('chosen-pizza').innerHTML = "You have selected a cheese-only pizza";
     cheesePizzaBtn.style.backgroundColor = '#3b3e41';
     toppingsPizzaBtn.style.backgroundColor = '#e27704'
     
-    var cheesePizzaDiv = document.createElement('div');
     cheesePizzaDiv.classList.add('select-cheese'); 
     cheesePizzaDiv.innerHTML = `
     <select id="cheese-select" class="form-select font4 p-2" aria-label="Default select">
-    <option class="grey-border" selected>Select your size</option>
+    <option class="grey-border" selected>Select your cheese</option>
     <option value="CLight">Light Cheese</option>
     <option value="CRegular">Regular Cheese</option>
     <option value="CExtra">Extra Cheese</option>
@@ -127,22 +139,12 @@ cheesePizzaBtn.addEventListener('click', function() {
     <option value="CTriple">Triple Cheese</option>
     </select>
     `;
-    pizzaOption.innerHTML = '';
     pizzaOption.appendChild(cheesePizzaDiv);
-    
-    var cheeseListener = document.getElementById('cheese-select');
-    cheeseListener.addEventListener('change', function() {
-        cheeseCalories = 0; 
-        cheeseProtein = 0; 
-        cheeseFats = 0; 
-        cheeseCarbs = 0; 
-        cheeseLevelCheese = cheeseListener.value;
-        console.log(cheeseLevelCheese);
-        calculateCheeseCO(cheeseLevelCheese); 
-    });
 });
 
 toppingsPizzaBtn.addEventListener('click', function() {
+    pizzaOption.innerHTML = '';
+    sauceOptionDiv.innerHTML = '';
     if (!sizeSelected || !crustSelected) {
         document.getElementById('chosen-pizza').innerHTML = "Please select a size and crust first";
         return;
@@ -164,22 +166,10 @@ toppingsPizzaBtn.addEventListener('click', function() {
     <option value="TTriple">Triple Cheese</option>
     </select>
     `;
-    pizzaOption.innerHTML = '';
     pizzaOption.appendChild(toppingPizzaDiv);
-    
-    var cheeseListener = document.getElementById('cheese-select-toppings');
-    cheeseListener.addEventListener('change', function() {
-        
-        cheeseCalories = 0; 
-        cheeseProtein = 0; 
-        cheeseFats = 0; 
-        cheeseCarbs = 0; 
-        cheeseLevelToppings = cheeseListener.value;
-        console.log(cheeseLevelToppings);
-        calculateCheeseT(cheeseLevelToppings); 
-    });
-    
 });
+
+
 
 function calculateCheeseT() {
     var info = cheeseDataT[selectedSize][selectedCrust][cheeseLevelToppings];
@@ -198,3 +188,74 @@ function calculateCheeseCO() {
     cheeseCarbs += info.carbs;
     console.log("calories from cheese: " + cheeseCalories);
 };
+
+pizzaOption.addEventListener('change', function(event) {
+    cheeseCalories = 0; 
+    cheeseProtein = 0; 
+    cheeseFats = 0; 
+    cheeseCarbs = 0; 
+    
+    const target = event.target;
+    
+    if (target.id === 'cheese-select-toppings') {
+        cheeseLevelToppings = target.value; 
+        console.log(cheeseLevelToppings);
+        calculateCheeseT(cheeseLevelToppings); 
+    } else if (target.id === 'cheese-select') {   
+        cheeseLevelCheese = target.value; 
+        console.log(cheeseLevelCheese);
+        calculateCheeseCO(cheeseLevelCheese); 
+    }
+    insertSauceOptions();
+});
+
+
+function insertSauceOptions() {
+    sauceOptionDiv.innerHTML = '';
+    var sauceOptions = document.createElement('div');
+    sauceOptions.classList.add('select-sauce');
+    
+    // sauceOptions.innerHTML = `
+    // <select id="sauce-select" class="form-select font4 p-2" aria-label="Default select">
+    // <option class="grey-border" selected>Select your sauce</option>
+    // </select>
+    // `;
+    sauceOptionDiv.appendChild(sauceOptions);
+    
+    if (selectedSize === 'Personal') {
+        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
+        { text: 'Hand Tossed', value: 'handTossed' }]);
+    } else if (selectedSize === 'Small') {
+        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
+        { text: 'Original Hand Tossed', value: 'originalHandTossed' },
+        { text: 'Crunchy Thin Crust', value: 'crunchyThinCrust' },
+        { text: 'Gluten Free Crust', value: 'glutenFreeCrust' }]);
+    } else if (selectedSize === 'Medium') {
+        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
+        { text: 'Original Hand Tossed', value: 'originalHandTossed' },
+        { text: 'Crunchy Thin Crust', value: 'crunchyThinCrust' },
+        { text: 'Handmade Pan', value: 'handmadePan' }]);
+    } else if (selectedSize === 'Large') {
+        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
+        { text: 'Original Hand Tossed', value: 'originalHandTossed' },
+        { text: 'Brooklyn Crust', value: 'brooklynCrust' },
+        { text: 'Crunchy Thin Crust', value: 'crunchyThinCrust' }]);
+    } else if (selectedSize === 'XLarge') {
+        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
+        { text: 'Original Hand Tossed', value: 'originalHandTossed' },
+        { text: 'Brooklyn Crust', value: 'brooklynCrust' }]);
+    }   
+}
+
+
+function addSauceOptions(sauceOptions) {
+    var selectSauce = document.getElementById('select-sauce');
+    selectSauce.innerHTML = ''; // Clear previous options
+    
+    selectSauce.forEach(function (option) {
+        var sauceOption = document.createElement('option');
+        sauceOption.textContent = option.text;
+        sauceOption.value = option.value; 
+        selectSauce.appendChild(sauceOption);
+    });
+}
