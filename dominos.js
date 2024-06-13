@@ -215,11 +215,11 @@ function insertSauceOptions() {
     var sauceOptions = document.createElement('div');
     sauceOptions.classList.add('select-sauce');
     
-    // sauceOptions.innerHTML = `
-    // <select id="sauce-select" class="form-select font4 p-2" aria-label="Default select">
-    // <option class="grey-border" selected>Select your sauce</option>
-    // </select>
-    // `;
+    sauceOptions.innerHTML = `
+    <select id="sauce-select" class="form-select font4 p-2" aria-label="Default select">
+    <option class="grey-border" selected>Select your sauce</option>
+    </select>
+    `;
     sauceOptionDiv.appendChild(sauceOptions);
     
     if (selectedSize === 'Personal') {
@@ -249,10 +249,10 @@ function insertSauceOptions() {
 
 
 function addSauceOptions(sauceOptions) {
-    var selectSauce = document.getElementById('select-sauce');
+    var selectSauce = document.getElementById('sauce-select');
     selectSauce.innerHTML = ''; // Clear previous options
     
-    selectSauce.forEach(function (option) {
+    sauceOptions.forEach(function (option) {
         var sauceOption = document.createElement('option');
         sauceOption.textContent = option.text;
         sauceOption.value = option.value; 
