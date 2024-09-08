@@ -216,3 +216,119 @@ export const crustSizeInfo = {
         'brooklynCrust': { calories: 780, protein: 24, fats: 9, carbs: 138 }
     }
 };
+
+export const sauceInfo = {
+    'Personal': {
+        'handTossed': {
+            'pizzaSauce': { calories: 10, protein: 0, fats: 0, carbs: 2 },
+            'bbqSauce': { calories: 40, protein: 0, fats: 0, carbs: 8 }
+        }
+    },
+    'Small': {
+        'glutenFreeCrust': {
+            'pizzaSauce': { calories: 45, protein: 3, fats: 0, carbs: 9 },
+            'alfredoSauce': { calories: 105, protein: 0, fats: 9, carbs: 0 },
+            'bbqSauce': { calories: 75, protein: 0, fats: 0, carbs: 18 },
+            'gpwSauce': { calories: 180, protein: 0, fats: 18, carbs: 3 },
+            'hmSauce': { calories: 60, protein: 3, fats: 0, carbs: 9 },
+            'ranchSauce': { calories: 210, protein: 0, fats: 21, carbs: 3 },
+            'bcSauce': { calories: 105, protein: 3, fats: 6, carbs: 15 }
+        },
+        'crunchyThinCrust': {
+            'pizzaSauce': { calories: 40, protein: 0, fats: 0, carbs: 8 },
+            'alfredoSauce': { calories: 100, protein: 4, fats: 10, carbs: 4 },
+            'bbqSauce': { calories: 80, protein: 0, fats: 0, carbs: 16 },
+            'gpwSauce': { calories: 180, protein: 0, fats: 20, carbs: 4 },
+            'hmSauce': { calories: 60, protein: 4, fats: 0, carbs: 12 },
+            'ranchSauce': { calories: 20, protein: 0, fats: 20, carbs: 0 },
+            'bcSauce': { calories: 120, protein: 4, fats: 6, carbs: 16 }
+        },
+        'originalHandTossed': {
+            'pizzaSauce': { calories: 30, protein: 0, fats: 0, carbs: 6 },
+            'alfredoSauce': { calories: 90, protein: 0, fats: 9, carbs: 0 },
+            'bbqSauce': { calories: 90, protein: 0, fats: 0, carbs: 18 },
+            'gpwSauce': { calories: 180, protein: 0, fats: 18, carbs: 0 },
+            'hmSauce': { calories: 60, protein: 0, fats: 0, carbs: 12 },
+            'ranchSauce': { calories: 210, protein: 0, fats: 21, carbs: 0 },
+            'bcSauce': { calories: 120, protein: 0, fats: 6, carbs: 12 }
+        }
+    },
+    'Medium': {
+        'originalHandTossed': {
+            'pizzaSauce': { calories: 80, protein: 0, fats: 0, carbs: 8 },
+            'alfredoSauce': { calories: 200, protein: 8, fats: 20, carbs: 8 },
+            'bbqSauce': { calories: 160, protein: 0, fats: 0, carbs: 32 },
+            'gpwSauce': { calories: 360, protein: 0, fats: 40, carbs: 8 },
+            'hmSauce': { calories: 80, protein: 0, fats: 0, carbs: 16 },
+            'ranchSauce': { calories: 400, protein: 0, fats: 40, carbs: 0 },
+            'bcSauce': { calories: 160, protein: 0, fats: 8, carbs: 24 }
+        },
+        'crunchyThinCrust': {
+            'pizzaSauce': { calories: 60, protein: 4, fats: 0, carbs: 12 },
+            'alfredoSauce': { calories: 200, protein: 4, fats: 20, carbs: 4 },
+            'bbqSauce': { calories: 160, protein: 0, fats: 0, carbs: 32 },
+            'gpwSauce': { calories: 360, protein: 4, fats: 40, carbs: 4 },
+            'hmSauce': { calories: 80, protein: 4, fats: 0, carbs: 16 },
+            'ranchSauce': { calories: 400, protein: 0, fats: 40, carbs: 4 },
+            'bcSauce': { calories: 160, protein: 4, fats: 8, carbs: 20 }
+        },
+        'handmadePan': {
+            'pizzaSauce': { calories: 40, protein: 0, fats: 0, carbs: 8 },
+            'alfredoSauce': { calories: 200, protein: 8, fats: 20, carbs: 8 },
+            'bbqSauce': { calories: 160, protein: 0, fats: 0, carbs: 32 },
+            'gpwSauce': { calories: 360, protein: 0, fats: 40, carbs: 8 },
+            'hmSauce': { calories: 40, protein: 0, fats: 0, carbs: 8 },
+            'ranchSauce': { calories: 400, protein: 0, fats: 40, carbs: 0 },
+            'bcSauce': { calories: 120, protein: 0, fats: 4, carbs: 16 }
+        }
+    },
+    'Large': {
+        'originalHandTossed': {
+            'pizzaSauce': { calories: 80, protein: 0, fats: 0, carbs: 16 },
+            'alfredoSauce': { calories: 280, protein: 8, fats: 24, carbs: 8 },
+            'bbqSauce': { calories: 200, protein: 0, fats: 0, carbs: 48 },
+            'gpwSauce': { calories: 480, protein: 0, fats: 48, carbs: 8 },
+            'hmSauce': { calories: 120, protein: 8, fats: 0, carbs: 24 },
+            'ranchSauce': { calories: 560, protein: 0, fats: 56, carbs: 8 },
+            'bcSauce': { calories: 240, protein: 8, fats: 12, carbs: 32 }
+        },
+        'brooklynCrust': {
+            'pizzaSauce': { calories: 90, protein: 6, fats: 0, carbs: 18 },
+            'alfredoSauce': { calories: 270, protein: 6, fats: 27, carbs: 6 },
+            'bbqSauce': { calories: 210, protein: 0, fats: 0, carbs: 48 },
+            'gpwSauce': { calories: 480, protein: 6, fats: 54, carbs: 6 },
+            'hmSauce': { calories: 120, protein: 6, fats: 0, carbs: 18 },
+            'ranchSauce': { calories: 540, protein: 0, fats: 54, carbs: 6 },
+            'bcSauce': { calories: 210, protein: 6, fats: 12, carbs: 30 }
+        },
+        'crunchyThinCrust': {
+            'pizzaSauce': { calories: 80, protein: 0, fats: 0, carbs: 16 },
+            'alfredoSauce': { calories: 280, protein: 8, fats: 24, carbs: 8 },
+            'bbqSauce': { calories: 200, protein: 0, fats: 0, carbs: 48 },
+            'gpwSauce': { calories: 480, protein: 0, fats: 48, carbs: 8 },
+            'hmSauce': { calories: 120, protein: 8, fats: 0, carbs: 24 },
+            'ranchSauce': { calories: 560, protein: 0, fats: 56, carbs: 8 },
+            'bcSauce': { calories: 240, protein: 8, fats: 12, carbs: 32 }
+        }
+    },
+    'XLarge': {
+        'originalHandTossed': {
+            'pizzaSauce': { calories: 150, protein: 10, fats: 0, carbs: 30 },
+            'alfredoSauce': { calories: 350, protein: 10, fats: 30, carbs: 10 },
+            'bbqSauce': { calories: 250, protein: 0, fats: 0, carbs: 60 },
+            'gpwSauce': { calories: 600, protein: 0, fats: 60, carbs: 10 },
+            'hmSauce': { calories: 200, protein: 10, fats: 0, carbs: 30 },
+            'ranchSauce': { calories: 700, protein: 0, fats: 70, carbs: 10 },
+            'bcSauce': { calories: 300, protein: 10, fats: 15, carbs: 40 }
+        },
+        'brooklynCrust': {
+            'pizzaSauce': { calories: 120, protein: 6, fats: 0, carbs: 24 },
+            'alfredoSauce': { calories: 360, protein: 6, fats: 30, carbs: 6 },
+            'bbqSauce': { calories: 270, protein: 0, fats: 3, carbs: 54 },
+            'gpwSauce': { calories: 600, protein: 6, fats: 66, carbs: 6 },
+            'hmSauce': { calories: 150, protein: 6, fats: 0, carbs: 30 },
+            'ranchSauce': { calories: 660, protein: 0, fats: 72, carbs: 6 },
+            'bcSauce': { calories: 300, protein: 6, fats: 15, carbs: 36 }
+        }
+    }
+};

@@ -83,3 +83,26 @@
     color: rgb(255, 0, 191); 
     background-color: #dae0e7bb !important;
 }
+
+.results{
+    font-size: 2rem;
+    
+}
+
+.large-text {
+    font-size: 24px; /* Make the large text bigger */
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  .small-text {
+    font-size: 14px; /* Smaller size for the text underneath */
+    margin-top: 5px;  /* Add some space between the two texts */
+  }
+  
+  .text-center {
+    text-align: center; /* Centers the text horizontally */
+    display: flex;
+    flex-direction: column; /* Stack large text on top of small text */
+    justify-content: center; /* Centers the text vertically */
+  }
+  

@@ -1,6 +1,4 @@
-import { cheeseDataT } from './dominosData.js';
-import { cheeseDataCO } from './dominosData.js';
-import { crustSizeInfo } from './dominosData.js';
+import { cheeseDataT, cheeseDataCO, sauceInfo, crustSizeInfo } from './dominosData.js';
 
 var totalCalories = 0;
 var totalProtein = 0;
@@ -15,7 +13,9 @@ var cheeseCarbs = 0;
 var sizeSelect = document.getElementById('size-select');
 var selectedCrust = ''; 
 var selectedSize = '';
+var selectedSauce = '';
 var crustSelected = false;
+var sauceSelected = false;
 var sizeSelected = false;
 
 var cheeseOrToppings = '';
@@ -194,6 +194,11 @@ pizzaOption.addEventListener('change', function(event) {
     cheeseProtein = 0; 
     cheeseFats = 0; 
     cheeseCarbs = 0; 
+
+    sauceCalories = 0; 
+    sauceProtein = 0; 
+    sauceCarbs = 0; 
+    sauceFats = 0; 
     
     const target = event.target;
     
@@ -221,32 +226,59 @@ function insertSauceOptions() {
     </select>
     `;
     sauceOptionDiv.appendChild(sauceOptions);
+
+    var sauceSelect = document.getElementById('sauce-select');
+    sauceSelect.addEventListener('change', function () {
+        //to do: reset things after if changed again
+        selectedSauce = sauceSelect.value; 
+        sauceSelected = true; 
+        calculateSauce(selectedSize, selectedCrust, selectedSauce);
+        console.log(selectedSauce);
+        //to do: pop up topping options or give final amount of just cheese
+    });
     
     if (selectedSize === 'Personal') {
-        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
-        { text: 'Hand Tossed', value: 'handTossed' }]);
+        addSauceOptions([{ text: 'Select your sauce', value: 'saucePlaceholder' },
+        { text: 'Pizza Sauce', value: 'pizzaSauce' },
+        { text: 'BBQ Sauce', value: 'bbqSauce' }]);
     } else if (selectedSize === 'Small') {
-        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
-        { text: 'Original Hand Tossed', value: 'originalHandTossed' },
-        { text: 'Crunchy Thin Crust', value: 'crunchyThinCrust' },
-        { text: 'Gluten Free Crust', value: 'glutenFreeCrust' }]);
+        addSauceOptions([{ text: 'Select your sauce', value: 'saucePlaceholder' },
+        { text: 'Pizza Sauce', value: 'pizzaSauce' },
+        { text: 'Alfredo Sauce', value: 'alfredoSauce' },
+        { text: 'BBQ Sauce', value: 'bbqSauce' },
+        { text: 'Garlic Parmesan White Sauce', value: 'gpwSauce' },
+        { text: 'Hearty Marinara Sauce', value: 'hmSauce' },
+        { text: 'Ranch Sauce', value: 'ranchSauce' },
+        { text: 'Butter Chicken Sauce', value: 'bcSauce' }]);
     } else if (selectedSize === 'Medium') {
-        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
-        { text: 'Original Hand Tossed', value: 'originalHandTossed' },
-        { text: 'Crunchy Thin Crust', value: 'crunchyThinCrust' },
-        { text: 'Handmade Pan', value: 'handmadePan' }]);
+        addSauceOptions([{ text: 'Select your sauce', value: 'saucePlaceholder' },
+        { text: 'Pizza Sauce', value: 'pizzaSauce' },
+        { text: 'Alfredo Sauce', value: 'alfredoSauce' },
+        { text: 'BBQ Sauce', value: 'bbqSauce' },
+        { text: 'Garlic Parmesan White Sauce', value: 'gpwSauce' },
+        { text: 'Hearty Marinara Sauce', value: 'hmSauce' },
+        { text: 'Ranch Sauce', value: 'ranchSauce' },
+        { text: 'Butter Chicken Sauce', value: 'bcSauce' }]);
     } else if (selectedSize === 'Large') {
-        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
-        { text: 'Original Hand Tossed', value: 'originalHandTossed' },
-        { text: 'Brooklyn Crust', value: 'brooklynCrust' },
-        { text: 'Crunchy Thin Crust', value: 'crunchyThinCrust' }]);
+        addSauceOptions([{ text: 'Select your sauce', value: 'saucePlaceholder' },
+        { text: 'Pizza Sauce', value: 'pizzaSauce' },
+        { text: 'Alfredo Sauce', value: 'alfredoSauce' },
+        { text: 'BBQ Sauce', value: 'bbqSauce' },
+        { text: 'Garlic Parmesan White Sauce', value: 'gpwSauce' },
+        { text: 'Hearty Marinara Sauce', value: 'hmSauce' },
+        { text: 'Ranch Sauce', value: 'ranchSauce' },
+        { text: 'Butter Chicken Sauce', value: 'bcSauce' }]);
     } else if (selectedSize === 'XLarge') {
-        addSauceOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
-        { text: 'Original Hand Tossed', value: 'originalHandTossed' },
-        { text: 'Brooklyn Crust', value: 'brooklynCrust' }]);
+        addSauceOptions([{ text: 'Select your sauce', value: 'saucePlaceholder' },
+        { text: 'Pizza Sauce', value: 'pizzaSauce' },
+        { text: 'Alfredo Sauce', value: 'alfredoSauce' },
+        { text: 'BBQ Sauce', value: 'bbqSauce' },
+        { text: 'Garlic Parmesan White Sauce', value: 'gpwSauce' },
+        { text: 'Hearty Marinara Sauce', value: 'hmSauce' },
+        { text: 'Ranch Sauce', value: 'ranchSauce' },
+        { text: 'Butter Chicken Sauce', value: 'bcSauce' }]);
     }   
-}
-
+};
 
 function addSauceOptions(sauceOptions) {
     var selectSauce = document.getElementById('sauce-select');
@@ -258,4 +290,13 @@ function addSauceOptions(sauceOptions) {
         sauceOption.value = option.value; 
         selectSauce.appendChild(sauceOption);
     });
+}
+
+function calculateSauce(size, crust, sauce) {
+    var info = sauceInfo[size][crust][sauce];
+    sauceCalories = info.calories;
+    sauceProtein = info.protein;
+    sauceFats = info.fats;
+    sauceCarbs = info.carbs;
+    console.log("calories from sauce: " + sauceCalories);
 }
