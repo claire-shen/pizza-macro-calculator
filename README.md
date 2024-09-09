@@ -2,3 +2,4 @@ This is a Pizza Macro Calculator that will help fellow gym enthusiasts save time
 
 Link to final product: https://pizzamacrocalculator.netlify.app/ 
 
+![](pizzaDemo.gif)
