@@ -111,7 +111,7 @@
     background-color: rgb(223, 103, 82);
 }
 
-/* Custom checkbox styles */
+
 .custom-checkbox input[type="checkbox"] {
     position: absolute;
     opacity: 0;
@@ -119,16 +119,18 @@
 }
 
 .custom-checkbox {
-    display: flex;
+    display: block;
+    width: auto;
     justify-content: center;
     align-items: center;
+    text-align: center;
     position: relative;
     font-size: 1.1rem;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     background-color: #d460df;
-    padding: 0.5rem;
-    padding-right: 0.7rem;
-    margin: 0.5rem;
+    padding: 0.1rem;
+    padding-right: 0.2rem;
+    margin: 0.2rem;
     border: solid 2px white;
     border-radius: 5%;
 }
@@ -187,4 +189,23 @@
     justify-content: center;
     align-items: center;
 }
-  
+
+.toppings {
+    background-color:rgb(181, 234, 67);
+    border-radius: 5%;
+    border: 2px solid white;
+}
+
+.row {
+    width: 100%;
+}
+
+@media (max-width: 576px) {
+    .custom-checkbox {
+        font-size: 0.8rem;  /* Adjust font size on small screens */
+    }
+}
+
+.hidden {
+    display: none;
+}
