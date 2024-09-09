@@ -37,6 +37,8 @@ let selectedToppings = [];
 sizeSelect.addEventListener('change', function () {
     sauceOptionDiv.innerHTML = '';
     pizzaOption.innerHTML = '';
+    toppingsSection.innerHTML = '';
+    resetResults();
     crustSelected = false; 
     toppingsPizzaBtn.style.backgroundColor = '#e27704'
     cheesePizzaBtn.style.backgroundColor = '#e27704';
@@ -99,6 +101,8 @@ var crustSelect = document.getElementById('crust-select');
 crustSelect.addEventListener('change', function () {
     pizzaOption.innerHTML = '';
     sauceOptionDiv.innerHTML = '';
+    toppingsSection.innerHTML = '';
+    resetResults();
     toppingsPizzaBtn.style.backgroundColor = '#e27704'
     cheesePizzaBtn.style.backgroundColor = '#e27704';
     document.getElementById('chosen-pizza').innerHTML = "";
@@ -123,6 +127,8 @@ var pizzaOption = document.querySelector('.pizzaOption'); //where the cheese opt
 cheesePizzaBtn.addEventListener('click', function() {
     pizzaOption.innerHTML = '';
     sauceOptionDiv.innerHTML = ''; 
+    toppingsSection.innerHTML = '';
+    resetResults();
     if (!sizeSelected || !crustSelected) {
         document.getElementById('chosen-pizza').innerHTML = "Please select a size and crust first";
         return;
@@ -152,6 +158,8 @@ cheesePizzaBtn.addEventListener('click', function() {
 toppingsPizzaBtn.addEventListener('click', function() {
     pizzaOption.innerHTML = '';
     sauceOptionDiv.innerHTML = '';
+    toppingsSection.innerHTML = '';
+    resetResults();
     if (!sizeSelected || !crustSelected) {
         document.getElementById('chosen-pizza').innerHTML = "Please select a size and crust first";
         return;
@@ -224,6 +232,7 @@ pizzaOption.addEventListener('change', function(event) {
 
 function insertSauceOptions() {
     sauceOptionDiv.innerHTML = '';
+    resetResults();
     var sauceOptions = document.createElement('div');
     sauceOptions.classList.add('select-sauce');
     
@@ -236,7 +245,7 @@ function insertSauceOptions() {
 
     var sauceSelect = document.getElementById('sauce-select');
     sauceSelect.addEventListener('change', function () {
-        //to do: reset things after if changed again
+        resetResults();
         selectedSauce = sauceSelect.value; 
         sauceSelected = true; 
         calculateSauce(selectedSize, selectedCrust, selectedSauce);
@@ -249,9 +258,9 @@ function insertSauceOptions() {
             document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                 checkbox.addEventListener('change', updateToppings);
             });
+        } else {
+            displayresults(); 
         }
-        
-        
     });
     
     if (selectedSize === 'Personal') {
@@ -300,6 +309,8 @@ function insertSauceOptions() {
 function addSauceOptions(sauceOptions) {
     var selectSauce = document.getElementById('sauce-select');
     selectSauce.innerHTML = ''; // Clear previous options
+    toppingsSection.innerHTML ='';
+    resetResults();
     
     sauceOptions.forEach(function (option) {
         var sauceOption = document.createElement('option');
@@ -374,25 +385,59 @@ function updateToppings() {
     
     // calculate here
     console.log('Selected Toppings:', selectedToppings);
-    calculateToppings();
+    calculateToppings(selectedSize, selectedCrust);
 }
 
-function calculateToppings(){
+function calculateToppings(size, crust){
     toppingCalories = 0; 
     toppingProtein = 0; 
     toppingCarbs = 0; 
     toppingFats = 0; 
 
     selectedToppings.forEach(topping => {
-        if (toppingInfo[topping]) {
-            const info = toppingInfo[topping];
-            toppingCalories += info.calories;
-            toppingProtein += info.protein;
-            toppingCarbs += info.carbs;
-            toppingFats += info.fats;
-        }
+        const info = toppingInfo[size][crust][topping];
+        toppingCalories += info.calories;
+        toppingProtein += info.protein;
+        toppingCarbs += info.carbs;
+        toppingFats += info.fats;
     });
 
-    console.log("calories from toppings: " + sauceCalories);
+    console.log("calories from toppings: " + toppingCalories);
+    displayresults(); 
+}
 
+
+function displayresults() {
+    console.log("ready for results");
+
+    var calories = document.getElementById('calories');
+    var finalCalories = totalCalories + sauceCalories + toppingCalories + cheeseCalories;
+    calories.innerHTML = finalCalories;
+
+    var protein = document.getElementById('protein');
+    var finalProtein = totalProtein + sauceProtein + toppingProtein + cheeseProtein;
+    protein.innerHTML = finalProtein + 'g';
+
+    var calories = document.getElementById('fats');
+    var finalFats = totalFats + sauceFats + toppingFats + cheeseFats;
+    fats.innerHTML = finalFats + 'g';
+
+    var carbs = document.getElementById('carbs');
+    var finalCarbs = totalCarbs + sauceCarbs + toppingCarbs + cheeseCarbs;
+    carbs.innerHTML = finalCarbs + 'g';
+}
+
+
+function resetResults() {
+    var calories = document.getElementById('calories');
+    calories.innerHTML = '-';
+
+    var protein = document.getElementById('protein');
+    protein.innerHTML = '-';
+
+    var calories = document.getElementById('fats');
+    fats.innerHTML = '-';
+
+    var carbs = document.getElementById('carbs');
+    carbs.innerHTML = '-';
 }
