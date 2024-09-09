@@ -51,8 +51,6 @@
     font-style: normal;
 }
 
-
-
 .select-size, .select-crust, .select-cheese, .select-cheese-toppings, .select-sauce{
     width: 90%;
     border: 2px solid grey; 
@@ -85,24 +83,108 @@
 }
 
 .results{
-    font-size: 2rem;
-    
+    font-size: 3rem;
+   
 }
 
 .large-text {
-    font-size: 24px; /* Make the large text bigger */
-    font-weight: bold; /* Make the text bold */
-  }
+    font-size: 2.2rem; 
+    font-weight: bold; 
+    font-family: "Teko", sans-serif;
+    margin-bottom: -0.5rem;
+}
   
-  .small-text {
-    font-size: 14px; /* Smaller size for the text underneath */
-    margin-top: 5px;  /* Add some space between the two texts */
-  }
+.small-text {
+    font-size: 1.4rem;
+    font-family: "Teko", sans-serif;
+}
   
-  .text-center {
-    text-align: center; /* Centers the text horizontally */
+.text-center {
+    text-align: center; 
     display: flex;
-    flex-direction: column; /* Stack large text on top of small text */
-    justify-content: center; /* Centers the text vertically */
-  }
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.resultborder {
+    border: 3px solid;
+    background-color: rgb(223, 103, 82);
+}
+
+/* Custom checkbox styles */
+.custom-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 1.1rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: #d460df;
+    padding: 0.5rem;
+    padding-right: 0.7rem;
+    margin: 0.5rem;
+    border: solid 2px white;
+    border-radius: 5%;
+}
+
+.custom-checkbox label {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.custom-checkbox label:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border: 2px solid #b5b5b5;
+    border-radius: 4px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    content: '✓';
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    color: #fff;
+    transform: translateY(-50%);
+}
+
+.custom-checkbox label:hover:before {
+    border-color: #007bff;
+}
+
+    /* Layout styles */
+.topping-row {
+    margin-bottom: 1rem;
+}
+
+.topping-row .col-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   
