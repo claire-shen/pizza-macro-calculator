@@ -1,4 +1,4 @@
-export const cheeseDataT = {
+const cheeseDataT = {
     'Personal': {
         'handTossed': {
             'TLight': { calories: 60, protein: 6, fats: 4, carbs: 2 },
@@ -95,7 +95,7 @@ export const cheeseDataT = {
     }
 };
 
-export const cheeseDataCO = {
+const cheeseDataCO = {
     'Personal': {
         'handTossed': {
             'CLight': { calories: 60, protein: 6, fats: 4, carbs: 2 },
@@ -192,7 +192,7 @@ export const cheeseDataCO = {
     }
 };
 
-export const crustSizeInfo = {
+const crustSizeInfo = {
     'Personal': {
         'handTossed': { calories: 144, protein: 12, fats: 5, carbs: 66 }
     },
@@ -217,7 +217,7 @@ export const crustSizeInfo = {
     }
 };
 
-export const sauceInfo = {
+const sauceInfo = {
     'Personal': {
         'handTossed': {
             'pizzaSauce': { calories: 10, protein: 0, fats: 0, carbs: 2 },
@@ -334,7 +334,7 @@ export const sauceInfo = {
 };
 
 
-export const toppingInfo = {
+const toppingInfo = {
     'Personal': {
         'handTossed': {
             'whiteCheddarCheese': { calories: 50, protein: 2, fats: 4, carbs: 2 },
@@ -656,4 +656,12 @@ export const toppingInfo = {
             'greenOlives': { calories: 120, protein: 0, fats: 9, carbs: 6 }
         }
     }
+};
+
+export {
+    cheeseDataT,
+    cheeseDataCO,
+    sauceInfo,
+    crustSizeInfo,
+    toppingInfo
 };

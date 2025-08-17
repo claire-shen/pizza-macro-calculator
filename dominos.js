@@ -1,14 +1,7 @@
 import { cheeseDataT, cheeseDataCO, sauceInfo, crustSizeInfo, toppingInfo } from './dominosData.js';
 
-var totalCalories = 0;
-var totalProtein = 0;
-var totalCarbs = 0; 
-var totalFats = 0;
-
-var cheeseCalories = 0; 
-var cheeseProtein = 0; 
-var cheeseFats = 0; 
-var cheeseCarbs = 0; 
+// Create API client instance
+const apiClient = new PizzaAPIClient('http://localhost:3000');
 
 var sizeSelect = document.getElementById('size-select');
 var selectedCrust = ''; 
@@ -20,17 +13,7 @@ var sizeSelected = false;
 
 var cheeseOrToppings = '';
 var cheeseLevelToppings = '';
-var cheeseLevelCheese= '';
-
-var sauceCalories = 0; 
-var sauceProtein = 0; 
-var sauceCarbs = 0; 
-var sauceFats = 0; 
-
-var toppingCalories = 0; 
-var toppingProtein = 0; 
-var toppingCarbs = 0; 
-var toppingFats = 0; 
+var cheeseLevelCheese = '';
 
 let selectedToppings = [];
 
@@ -48,11 +31,6 @@ sizeSelect.addEventListener('change', function () {
     console.log(selectedSize);
     
     selectedCrust = ''; 
-    
-    totalCalories = 0;
-    totalProtein = 0;
-    totalFats = 0;
-    totalCarbs = 0;
     
     if (selectedSize === 'Personal') {
         addCrustOptions([{ text: 'Select your crust', value: 'crustPlaceholder' },
@@ -108,17 +86,8 @@ crustSelect.addEventListener('change', function () {
     document.getElementById('chosen-pizza').innerHTML = "";
     selectedCrust = crustSelect.value; 
     crustSelected = true; 
-    calculateCrustSize(selectedSize, selectedCrust);
+    console.log("Crust selected:", selectedCrust);
 });
-
-function calculateCrustSize(size, crust) {
-    var info = crustSizeInfo[size][crust];
-    totalCalories = info.calories;
-    totalProtein = info.protein;
-    totalFats = info.fats;
-    totalCarbs = info.carbs;
-    console.log("calories from size crust: " + totalCalories);
-}
 
 var cheesePizzaBtn = document.getElementById('cheese-pizza-btn');
 var toppingsPizzaBtn = document.getElementById('toppings-pizza-btn');
@@ -184,51 +153,18 @@ toppingsPizzaBtn.addEventListener('click', function() {
     pizzaOption.appendChild(toppingPizzaDiv);
 });
 
-
-
-function calculateCheeseT() {
-    var info = cheeseDataT[selectedSize][selectedCrust][cheeseLevelToppings];
-    cheeseCalories += info.calories;
-    cheeseProtein += info.protein;
-    cheeseFats += info.fats;
-    cheeseCarbs += info.carbs;
-    console.log("calories from cheese: " + cheeseCalories);
-};
-
-function calculateCheeseCO() {
-    var info = cheeseDataCO[selectedSize][selectedCrust][cheeseLevelCheese];
-    cheeseCalories += info.calories;
-    cheeseProtein += info.protein;
-    cheeseFats += info.fats;
-    cheeseCarbs += info.carbs;
-    console.log("calories from cheese: " + cheeseCalories);
-};
-
 pizzaOption.addEventListener('change', function(event) {
-    cheeseCalories = 0; 
-    cheeseProtein = 0; 
-    cheeseFats = 0; 
-    cheeseCarbs = 0; 
-
-    sauceCalories = 0; 
-    sauceProtein = 0; 
-    sauceCarbs = 0; 
-    sauceFats = 0; 
-    
     const target = event.target;
     
     if (target.id === 'cheese-select-toppings') {
         cheeseLevelToppings = target.value; 
-        console.log(cheeseLevelToppings);
-        calculateCheeseT(cheeseLevelToppings); 
+        console.log("Cheese level selected:", cheeseLevelToppings);
     } else if (target.id === 'cheese-select') {   
         cheeseLevelCheese = target.value; 
-        console.log(cheeseLevelCheese);
-        calculateCheeseCO(cheeseLevelCheese); 
+        console.log("Cheese level selected:", cheeseLevelCheese);
     }
     insertSauceOptions();
 });
-
 
 function insertSauceOptions() {
     sauceOptionDiv.innerHTML = '';
@@ -248,8 +184,7 @@ function insertSauceOptions() {
         resetResults();
         selectedSauce = sauceSelect.value; 
         sauceSelected = true; 
-        calculateSauce(selectedSize, selectedCrust, selectedSauce);
-        console.log(selectedSauce);
+        console.log("Sauce selected:", selectedSauce);
 
         //showing toppings
         if (cheeseOrToppings === "toppings") {
@@ -259,7 +194,7 @@ function insertSauceOptions() {
                 checkbox.addEventListener('change', updateToppings);
             });
         } else {
-            displayresults(); 
+            calculateNutritionFromAPI(); 
         }
     });
     
@@ -320,15 +255,6 @@ function addSauceOptions(sauceOptions) {
     });
 };
 
-function calculateSauce(size, crust, sauce) {
-    var info = sauceInfo[size][crust][sauce];
-    sauceCalories = info.calories;
-    sauceProtein = info.protein;
-    sauceFats = info.fats;
-    sauceCarbs = info.carbs;
-    console.log("calories from sauce: " + sauceCalories);
-};
-
 function addToppings() {
     var toppingsDiv = document.getElementById('toppingsSection');
     var toppingsHTML= `
@@ -370,7 +296,6 @@ function addToppings() {
     toppingsDiv.innerHTML = toppingsHTML;
 };
 
-
 function updateToppings() {
     selectedToppings = [];
     
@@ -383,50 +308,66 @@ function updateToppings() {
         }
     });
     
-    // calculate here
     console.log('Selected Toppings:', selectedToppings);
-    calculateToppings(selectedSize, selectedCrust);
+    calculateNutritionFromAPI();
 }
 
-function calculateToppings(size, crust){
-    toppingCalories = 0; 
-    toppingProtein = 0; 
-    toppingCarbs = 0; 
-    toppingFats = 0; 
+// Single function to calculate nutrition from API
+async function calculateNutritionFromAPI() {
+    try {
+        const pizzaData = {
+            size: selectedSize,
+            crust: selectedCrust
+        };
 
-    selectedToppings.forEach(topping => {
-        const info = toppingInfo[size][crust][topping];
-        toppingCalories += info.calories;
-        toppingProtein += info.protein;
-        toppingCarbs += info.carbs;
-        toppingFats += info.fats;
-    });
+        if (cheeseOrToppings === 'cheese' && cheeseLevelCheese) {
+            pizzaData.cheeseLevel = cheeseLevelCheese;
+        } else if (cheeseOrToppings === 'toppings' && cheeseLevelToppings) {
+            pizzaData.cheeseLevel = cheeseLevelToppings;
+        }
 
-    console.log("calories from toppings: " + toppingCalories);
-    displayresults(); 
+        if (selectedSauce && selectedSauce !== 'saucePlaceholder') {
+            pizzaData.sauce = selectedSauce;
+        }
+
+        if (selectedToppings.length > 0) {
+            pizzaData.toppings = selectedToppings;
+        }
+
+        console.log('Sending to API:', pizzaData);
+
+        const response = await apiClient.calculateNutrition(pizzaData);
+        
+        if (response.success) {
+            const nutrition = response.data.nutrition;
+            console.log('API calculated nutrition:', nutrition);
+            
+            // Display results directly from API
+            displayResultsFromAPI(nutrition);
+        } else {
+            console.error('API returned error:', response.error);
+        }
+    } catch (error) {
+        console.error('Error calling API:', error);
+    }
 }
 
 
-function displayresults() {
-    console.log("ready for results");
+function displayResultsFromAPI(nutrition) {
+    console.log("Displaying results from API");
 
     var calories = document.getElementById('calories');
-    var finalCalories = totalCalories + sauceCalories + toppingCalories + cheeseCalories;
-    calories.innerHTML = finalCalories;
+    calories.innerHTML = nutrition.calories;
 
     var protein = document.getElementById('protein');
-    var finalProtein = totalProtein + sauceProtein + toppingProtein + cheeseProtein;
-    protein.innerHTML = finalProtein + 'g';
+    protein.innerHTML = nutrition.protein + 'g';
 
-    var calories = document.getElementById('fats');
-    var finalFats = totalFats + sauceFats + toppingFats + cheeseFats;
-    fats.innerHTML = finalFats + 'g';
+    var fats = document.getElementById('fats');
+    fats.innerHTML = nutrition.fats + 'g';
 
     var carbs = document.getElementById('carbs');
-    var finalCarbs = totalCarbs + sauceCarbs + toppingCarbs + cheeseCarbs;
-    carbs.innerHTML = finalCarbs + 'g';
+    carbs.innerHTML = nutrition.carbs + 'g';
 }
-
 
 function resetResults() {
     var calories = document.getElementById('calories');
@@ -435,7 +376,7 @@ function resetResults() {
     var protein = document.getElementById('protein');
     protein.innerHTML = '-';
 
-    var calories = document.getElementById('fats');
+    var fats = document.getElementById('fats');
     fats.innerHTML = '-';
 
     var carbs = document.getElementById('carbs');
