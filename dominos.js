@@ -314,7 +314,14 @@ function updateToppings() {
 
 // Single function to calculate nutrition from API
 async function calculateNutritionFromAPI() {
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const resultsContainer = document.getElementById('results-container');
+    
     try {
+        // Show loading spinner and hide results
+        if (loadingSpinner) loadingSpinner.style.display = 'flex';
+        if (resultsContainer) resultsContainer.style.display = 'none';
+        
         const pizzaData = {
             size: selectedSize,
             crust: selectedCrust
@@ -349,6 +356,10 @@ async function calculateNutritionFromAPI() {
         }
     } catch (error) {
         console.error('Error calling API:', error);
+    } finally {
+        // Hide loading spinner and show results
+        if (loadingSpinner) loadingSpinner.style.display = 'none';
+        if (resultsContainer) resultsContainer.style.display = 'flex';
     }
 }
 

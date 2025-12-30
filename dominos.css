@@ -209,3 +209,18 @@
 .hidden {
     display: none;
 }
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.loading-text {
+    font-size: 1.5rem;
+    color: #e27704;
+    font-weight: bold;
+}
