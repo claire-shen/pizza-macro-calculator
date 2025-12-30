@@ -1,7 +1,7 @@
 import { cheeseDataT, cheeseDataCO, sauceInfo, crustSizeInfo, toppingInfo } from './dominosData.js';
 
-// Create API client instance
-const apiClient = new PizzaAPIClient('http://localhost:3000');
+// Create API client instance - will auto-detect environment (localhost vs production)
+const apiClient = new PizzaAPIClient();
 
 var sizeSelect = document.getElementById('size-select');
 var selectedCrust = ''; 

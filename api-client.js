@@ -1,6 +1,20 @@
 class PizzaAPIClient {
-    constructor(baseURL = 'http://localhost:3000') {
-        this.baseURL = baseURL;
+    constructor(baseURL = null) {
+        // Auto-detect environment if baseURL not provided
+        if (baseURL === null) {
+            if (typeof window !== 'undefined') {
+                const hostname = window.location.hostname;
+                if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                    this.baseURL = 'http://localhost:3000';
+                } else {
+                    this.baseURL = window.API_BASE_URL || 'https://pizza-macro-calculator.onrender.com';
+                }
+            } else {
+                this.baseURL = process.env.API_URL || 'http://localhost:3000';
+            }
+        } else {
+            this.baseURL = baseURL;
+        }
     }
 
     async getPizzaSizes() {
